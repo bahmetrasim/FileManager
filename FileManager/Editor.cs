@@ -17,11 +17,16 @@ namespace FileManager
         {
             List<int> texttointlist = new List<int>();
             string[] texttostring = text.Split(',');
-
+            
 
             foreach (var item in texttostring)
             {
-                texttointlist.Add(int.Parse(item));
+                int a;
+                if (int.TryParse(item,out a))
+                {
+                    texttointlist.Add(int.Parse(item));
+                }
+                
             }
             return texttointlist;
         }
