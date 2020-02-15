@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FileManager
 {
-    class Editor: FileManage
+    public class Editor
 
     {
         public string sort (string text)
@@ -17,7 +17,6 @@ namespace FileManager
         {
             List<int> texttointlist = new List<int>();
             string[] texttostring = text.Split(',');
-            
 
             foreach (var item in texttostring)
             {
@@ -26,7 +25,6 @@ namespace FileManager
                 {
                     texttointlist.Add(int.Parse(item));
                 }
-                
             }
             return texttointlist;
         }

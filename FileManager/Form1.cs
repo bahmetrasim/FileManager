@@ -16,7 +16,6 @@ namespace FileManager
         public Form1()
         {
             InitializeComponent();
-            
         }
 
         private void Open_Click(object sender, EventArgs e)
