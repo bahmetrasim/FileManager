@@ -31,7 +31,7 @@ namespace FileManager
 
         }
 
-        public void Saveas()
+        public void Saveas(string sortingtype)
         {
             SaveFileDialog savingfile = new SaveFileDialog();
             savingfile.Filter = "Text Files | *.txt";

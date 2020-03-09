@@ -10,14 +10,27 @@ namespace FileManager
 
     {
         char[] delimeters;
+
         public string sort(string text)
         {
-            return finaltext(ascendingsorted( makeintlist(seperate(finding_seperators(text), text))), delimeters);
+            if (text == "merge")
+            {
+                return finaltext(mergesort(makeintlist(seperate(finding_seperators(text), text))), delimeters);
+            }
+            else if (text == "selection")
+            {
+                return finaltext(selectionsort(makeintlist(seperate(finding_seperators(text), text))), delimeters);
+            }
+            else
+            {
+                return finaltext(bublesort(makeintlist(seperate(finding_seperators(text), text))), delimeters);
+            }
+            
         }
         public char[] finding_seperators(string text)
         {
             char[] stringtochar = text.ToArray();
-           
+
             for (int i = 0; i < stringtochar.Length; i++)
             {
                 int a;
@@ -89,6 +102,55 @@ namespace FileManager
             string text = string.Join(seperatevalue, inttostringarray(sorted));
 
             return text;
+        }
+        public List<int> selectionsort(List<int> tobesort)
+        {
+
+            for (int i = 0; i < tobesort.Count; i++)
+            {
+                Tuple<int, int> minvalues = findingminvalues(tobesort, i);
+                int minvalue = minvalues.Item1;
+                int minindex = minvalues.Item2;
+
+                if (tobesort[i] > minvalue)
+                {
+                    var temp = tobesort[i];
+                    tobesort[i] = minvalue;
+                    tobesort[minindex] = temp;
+                }
+
+            }
+            return tobesort;
+        }
+        public Tuple<int, int> findingminvalues(List<int> finding, int startIndex)
+        {
+            var array = finding.ToArray();
+            var list = array.Skip(startIndex).Take(array.Length - startIndex + 1).ToList();
+
+            int minvalue = list.Min();
+            int minindex = list.IndexOf(minvalue) + startIndex;
+            return new Tuple<int, int>(minvalue, minindex);
+        }
+        public List<int> bublesort(List<int> tobesort)
+        {
+            for (int i = 0; i < tobesort.Count - 1; i++)
+            {
+                for (int j = 0; j < tobesort.Count - 1; j++)
+                {
+                    if (tobesort[j] > tobesort[j + 1])
+                    {
+                        var temp = tobesort[j];
+                        tobesort[j] = tobesort[j + 1];
+                        tobesort[j + 1] = temp;
+                    }
+                }
+            }
+
+            return tobesort;
+        }
+        public List<int> mergesort(List<int> tobesort)
+        {
+            return tobesort;
         }
     }
 }

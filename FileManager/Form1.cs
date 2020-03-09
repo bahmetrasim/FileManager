@@ -16,6 +16,7 @@ namespace FileManager
         public Form1()
         {
             InitializeComponent();
+            SSort.Checked = true;
         }
 
         private void Open_Click(object sender, EventArgs e)
@@ -25,7 +26,20 @@ namespace FileManager
 
         private void Save_As_Click(object sender, EventArgs e)
         {
-            FM1.Saveas();
+            string sortingtype = "";
+            if (SSort.Checked)
+            {
+                sortingtype = "SSort";
+            }
+            else if (BSort.Checked)
+            {
+                sortingtype = "BSort";
+            }
+            else
+            {
+                sortingtype = "MSort";
+            }
+            FM1.Saveas(sortingtype);
         }
     }
 }
